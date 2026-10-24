@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Files - Modern File Manager (Business Edition)",
+  "short_name": "Files Web",
+  "version": "1.0.0",
+  "description": "A modern WinUI Fluent-inspired File Manager for Chrome with tabs, folder browsing, file previews, tags, and search.",
+  "permissions": [
+    "storage",
+    "unlimitedStorage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Files Manager"
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

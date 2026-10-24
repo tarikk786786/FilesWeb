@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Files Manager</title>
+  <style>
+    :root {
+      --bg: #1c1c1e;
+      --card-bg: #2c2c2e;
+      --accent: #0078d4;
+      --accent-hover: #1084d8;
+      --text: #f5f5f7;
+      --text-muted: #98989d;
+      --border: #3a3a3c;
+    }
+    body {
+      margin: 0;
+      padding: 16px;
+      width: 320px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      box-sizing: border-box;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .header img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+    }
+    .header h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .badge {
+      background: rgba(0, 120, 212, 0.2);
+      color: #60cdff;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .card p {
+      margin: 0 0 10px 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 10px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+    .btn:hover {
+      background: var(--accent-hover);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      margin-top: 8px;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .footer {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="icons/icon48.png" alt="Files Logo">
+    <div>
+      <h2>Files Manager</h2>
+    </div>
+    <span class="badge">Business</span>
+  </div>
+
+  <div class="card">
+    <p>A modern Fluent-design file manager right inside Chrome. Tabbed navigation, local folder browsing, live code/media previews, and tag organization.</p>
+    <button id="openFullApp" class="btn">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M1.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-13a.5.5 0 0 0-.5-.5h-13zM2 2h12v12H2V2z"/>
+        <path d="M4 4.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+      Open Full Workspace Tab
+    </button>
+    <button id="openSidePanel" class="btn btn-secondary">
+      Open in Chrome Side Panel
+    </button>
+  </div>
+
+  <div class="footer">
+    Tarik Business Edition &bull; Local File System API
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

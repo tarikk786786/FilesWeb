@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Files - Business Edition</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="icons/icon48.png">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Tab Bar -->
+    <header class="app-tabbar">
+      <div class="window-controls-spacer"></div>
+      <div class="tabs-scroll-area" id="tabsContainer">
+        <!-- Tabs will be rendered here dynamically -->
+      </div>
+      <button class="icon-btn tab-add-btn" id="btnAddTab" title="Open new tab (Ctrl+T)">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 2a.75.75 0 0 1 .75.75v4.5h4.5a.75.75 0 0 1 0 1.5h-4.5v4.5a.75.75 0 0 1-1.5 0v-4.5h-4.5a.75.75 0 0 1 0-1.5h4.5v-4.5A.75.75 0 0 1 8 2z"/>
+        </svg>
+      </button>
+      <div class="profile-pill">
+        <span class="profile-dot"></span>
+        <span class="profile-name">Tarik Business</span>
+      </div>
+    </header>
+
+    <!-- Navigation & Address Bar -->
+    <nav class="app-navbar">
+      <div class="nav-controls">
+        <button class="icon-btn" id="btnNavBack" title="Back (Alt+Left)" disabled>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M15 8a.75.75 0 0 1-.75.75H4.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 1.06L4.06 7.25h10.19c.414 0 .75.336.75.75z"/></svg>
+        </button>
+        <button class="icon-btn" id="btnNavForward" title="Forward (Alt+Right)" disabled>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M1 8a.75.75 0 0 1 .75-.75h10.19L8.22 3.53a.75.75 0 0 1 1.06-1.06l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 0 1-1.06-1.06l3.72-3.72H1.75A.75.75 0 0 1 1 8z"/></svg>
+        </button>
+        <button class="icon-btn" id="btnNavUp" title="Up one level (Alt+Up)" disabled>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 15a.75.75 0 0 1-.75-.75V4.06L3.53 7.78a.75.75 0 1 1-1.06-1.06l5-5a.75.75 0 0 1 1.06 0l5 5a.75.75 0 1 1-1.06 1.06L8.75 4.06v10.19c0 .414-.336.75-.75.75z"/></svg>
+        </button>
+        <button class="icon-btn" id="btnNavRefresh" title="Refresh (F5)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+        </button>
+      </div>
+
+      <!-- Breadcrumbs Path -->
+      <div class="breadcrumb-bar" id="breadcrumbBar">
+        <span class="breadcrumb-item breadcrumb-root">Home</span>
+      </div>
+
+      <!-- Search Box -->
+      <div class="search-box">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+        <input type="text" id="searchInput" placeholder="Search current folder...">
+        <button class="icon-btn clear-search-btn" id="btnClearSearch" style="display:none;">&times;</button>
+      </div>
+
+      <!-- View Switcher -->
+      <div class="view-switcher">
+        <button class="icon-btn active" id="btnViewGrid" title="Grid View">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/></svg>
+        </button>
+        <button class="icon-btn" id="btnViewDetails" title="Details View">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Command / Actions Ribbon Bar -->
+    <div class="app-toolbar">
+      <button class="toolbar-btn primary" id="btnOpenFolder">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h4.672a2 2 0 0 1 2 2v1H.54z"/><path d="M.03 6.5 1.5 14h13l1.5-7.5H.03z"/></svg>
+        Open Folder
+      </button>
+      <button class="toolbar-btn" id="btnNewFolder" disabled>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.267-2.91A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2zm13.5 8.5v-2a.5.5 0 0 0-1 0v2h-2a.5.5 0 0 0 0 1h2v2a.5.5 0 0 0 1 0v-2h2a.5.5 0 0 0 0-1h-2z"/></svg>
+        New Folder
+      </button>
+      <button class="toolbar-btn" id="btnNewFile" disabled>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z"/><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/></svg>
+        New File
+      </button>
+      <div class="toolbar-divider"></div>
+      <button class="toolbar-btn" id="btnSortMenu">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/></svg>
+        Sort: <span id="currentSortLabel">Name</span>
+      </button>
+      <div class="toolbar-divider"></div>
+      <span class="status-summary" id="statusBarSummary">Ready</span>
+    </div>
+
+    <!-- Main Workspace Split: Sidebar & File Explorer -->
+    <div class="app-body">
+      <!-- Left Navigation Sidebar -->
+      <aside class="app-sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">Quick Access</div>
+          <button class="sidebar-item active" data-nav="home">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L8.707 1.5Z"/><path d="M7.5 10.5V14h1v-3.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V14h1v-3.5a1.5 1.5 0 0 0-1.5-1.5h-1a1.5 1.5 0 0 0-1.5 1.5Z"/></svg>
+            <span>Home</span>
+          </button>
+          <button class="sidebar-item" id="sidebarOpenFolderBtn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3z"/></svg>
+            <span>Choose Folder...</span>
+          </button>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">Pinned Workspaces</div>
+          <div id="pinnedWorkspacesList">
+            <div class="empty-hint">No pinned folders yet</div>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">Color Tags</div>
+          <button class="sidebar-item tag-filter-item" data-tag="all">
+            <span class="tag-badge-dot" style="background:#888;"></span>
+            <span>All Tags</span>
+          </button>
+          <button class="sidebar-item tag-filter-item" data-tag="red">
+            <span class="tag-badge-dot" style="background:#ff4d4f;"></span>
+            <span>Urgent / Priority</span>
+          </button>
+          <button class="sidebar-item tag-filter-item" data-tag="blue">
+            <span class="tag-badge-dot" style="background:#1890ff;"></span>
+            <span>Business / Clients</span>
+          </button>
+          <button class="sidebar-item tag-filter-item" data-tag="green">
+            <span class="tag-badge-dot" style="background:#52c41a;"></span>
+            <span>Completed / Final</span>
+          </button>
+          <button class="sidebar-item tag-filter-item" data-tag="purple">
+            <span class="tag-badge-dot" style="background:#722ed1;"></span>
+            <span>Review / Draft</span>
+          </button>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="sidebar-footer-info">
+            <div class="app-version">Files v1.0 Business</div>
+            <div class="app-sub">Chrome Manifest V3 Edition</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Explorer Content View -->
+      <main class="app-content" id="mainContent">
+        <!-- Welcome Screen (shown when no directory is active) -->
+        <div class="welcome-screen" id="welcomeScreen">
+          <div class="welcome-card">
+            <div class="welcome-icon">
+              <svg width="48" height="48" viewBox="0 0 16 16" fill="#0078d4">
+                <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3z"/>
+              </svg>
+            </div>
+            <h2>Welcome to Files (Business Edition)</h2>
+            <p>Access and organize your workspace files, documents, and assets directly inside Chrome with full previewing and color tagging.</p>
+            <div class="welcome-actions">
+              <button class="btn-primary-large" id="welcomeOpenBtn">
+                <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h4.672a2 2 0 0 1 2 2v1H.54z"/><path d="M.03 6.5 1.5 14h13l1.5-7.5H.03z"/></svg>
+                Select Folder from Computer
+              </button>
+              <button class="btn-secondary-large" id="btnLoadDemoWorkspace">
+                Load Interactive Workspace Demo
+              </button>
+            </div>
+            <div class="welcome-features-grid">
+              <div class="feature-item">
+                <div class="f-icon">📁</div>
+                <div class="f-text">
+                  <strong>Local File System API</strong>
+                  <span>Browse, read, create, and save files natively.</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="f-icon">📑</div>
+                <div class="f-text">
+                  <strong>Multi-Tab Navigation</strong>
+                  <span>Open multiple workspace folders side-by-side.</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="f-icon">👁️</div>
+                <div class="f-text">
+                  <strong>Rich File Previewer</strong>
+                  <span>Inspect & edit code, markdown, images, and audio.</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="f-icon">🏷️</div>
+                <div class="f-text">
+                  <strong>Color Tagging</strong>
+                  <span>Mark urgent tasks, drafts, or client files.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Files Grid/List Container -->
+        <div class="files-container" id="filesContainer" style="display:none;">
+          <div class="files-view-grid" id="filesViewGrid">
+            <!-- File cards rendered dynamically -->
+          </div>
+
+          <table class="files-view-table" id="filesViewTable" style="display:none;">
+            <thead>
+              <tr>
+                <th class="col-name" data-sort="name">Name <span class="sort-indicator">&uarr;</span></th>
+                <th class="col-date" data-sort="date">Date Modified</th>
+                <th class="col-type" data-sort="type">Type</th>
+                <th class="col-size" data-sort="size">Size</th>
+                <th class="col-tag">Tag</th>
+                <th class="col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="filesTableBody">
+              <!-- Rows rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Preview & Editor Modal -->
+  <div class="modal-backdrop" id="previewModal" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-area">
+          <span class="modal-file-icon" id="previewModalIcon">📄</span>
+          <h3 id="previewModalTitle">file.txt</h3>
+          <span class="preview-badge" id="previewModalBadge">Text</span>
+        </div>
+        <div class="modal-actions">
+          <button class="icon-btn" id="btnSavePreview" title="Save file to disk" style="display:none;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4.414A1 1 0 0 0 14.707 3.707l-2.414-2.414A1 1 0 0 0 11.586 1H2zm1 1h8.586L14 4.414V14H2V2zm2 10a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm7-9a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h6z"/></svg>
+            Save
+          </button>
+          <button class="icon-btn" id="btnClosePreview" title="Close preview">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body" id="previewModalBody">
+        <!-- Content rendered here: code, image, video, markdown, etc. -->
+      </div>
+      <div class="modal-footer">
+        <span id="previewModalFooterInfo">Size: 0 B &bull; Last Modified: Today</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Context Menu -->
+  <div class="context-menu" id="contextMenu" style="display:none;">
+    <div class="context-item" id="ctxOpen">Open</div>
+    <div class="context-item" id="ctxPreview">Quick Preview</div>
+    <div class="context-divider"></div>
+    <div class="context-item" id="ctxTagSubmenu">
+      Add Color Tag
+      <div class="tag-submenu">
+        <span class="tag-dot-picker" data-tag="red" style="background:#ff4d4f;" title="Urgent"></span>
+        <span class="tag-dot-picker" data-tag="blue" style="background:#1890ff;" title="Business"></span>
+        <span class="tag-dot-picker" data-tag="green" style="background:#52c41a;" title="Final"></span>
+        <span class="tag-dot-picker" data-tag="purple" style="background:#722ed1;" title="Review"></span>
+        <span class="tag-dot-picker" data-tag="none" style="background:#555;" title="Clear"></span>
+      </div>
+    </div>
+    <div class="context-divider"></div>
+    <div class="context-item text-danger" id="ctxDelete">Delete</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
